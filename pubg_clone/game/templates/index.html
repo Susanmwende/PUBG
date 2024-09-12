@@ -1,0 +1,36 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUBG Clone</title>
+    <script>
+        async function fetchPlayers() {
+            const response = await fetch('/api/players/');
+            const players = await response.json();
+            console.log(players);
+            // Display players on the page
+        }
+
+        async function createPlayer() {
+            const response = await fetch('/api/players/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: 'Player1' }),
+            });
+            const player = await response.json();
+            console.log(player);
+            // Update the UI with the new player
+        }
+    </script>
+</head>
+<body>
+    <h1>PUBG Clone</h1>
+    <button onclick="fetchPlayers()">Fetch Players</button>
+    <button onclick="createPlayer()">Create Player</button>
+    <div id="player-list"></div>
+</body>
+</html>
